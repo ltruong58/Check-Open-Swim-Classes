@@ -1,13 +1,13 @@
 name: Daily Email Notification
 
 on:
-  schedule:
-    - cron: '0 9 * * *'  # Runs daily at 9:00 UTC
+  # schedule:
+  #   - cron: '0 9 * * *'  # Runs daily at 9:00 UTC
   workflow_dispatch:  # Allow manual trigger too
 
 jobs:
   send-email:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repo
