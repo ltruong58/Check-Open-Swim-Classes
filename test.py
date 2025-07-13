@@ -51,7 +51,7 @@ try:
     open_classes = []
 
     for item in activities:
-        if(item.get('urgent_message').get('status_description') == 'Full'):
+        if(item.get('urgent_message').get('status_description') != 'Full'):
             hasChanged = True
             open_classes.append(str(item.get('number') + " " + item.get('name')))
         print(item.get('number'), item.get('urgent_message').get('status_description'))
