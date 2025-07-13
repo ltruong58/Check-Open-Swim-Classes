@@ -53,8 +53,8 @@ try:
     for item in activities:
         if(item.get('urgent_message').get('status_description') == 'Full'):
             hasChanged = True
-            open_classes.append(item.get('id'))
-        print(item.get('id'), item.get('urgent_message').get('status_description'))
+            open_classes.append(str(item.get('number') + " " + item.get('name')))
+        print(item.get('number'), item.get('urgent_message').get('status_description'))
 
 except requests.exceptions.RequestException as e:
     print(f"An error occurred during the API call: {e}")
@@ -63,17 +63,17 @@ print(hasChanged)
 if hasChanged:
     
     # To run on Server
-    # sender_email = os.environ['EMAIL_USER']
-    # sender_password = os.environ['EMAIL_PASS']
-    # recipient_email = os.environ['TO_EMAIL']
+    sender_email = os.environ['EMAIL_USER']
+    sender_password = os.environ['EMAIL_PASS']
+    recipient_email = os.environ['TO_EMAIL']
 
     # To run on local
-    sender_email = 'long.truongnguyenthanh@gmail.com'
-    sender_password = 'amfn dzds mbns xjtf'
-    recipient_email = 'long.truongswe@gmail.com'
+    # sender_email = 'long.truongnguyenthanh@gmail.com'
+    # sender_password = 'amfn dzds mbns xjtf'
+    # recipient_email = 'long.truongswe@gmail.com'
 
     subject = "GitHub Action: Open classes"
-    body = "New open class(es) are now available: \n" + " \n".join(str(item) for item in open_classes)
+    body = "New open class(es) are now available: \n" + " \n".join(item for item in open_classes)
 
     print(body)
     msg = MIMEText(body)
